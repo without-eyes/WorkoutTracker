@@ -2,33 +2,31 @@ package com.workouttracker.rest.controller;
 
 import org.springframework.web.bind.annotation.*;
 import com.workouttracker.rest.model.User;
+import com.workouttracker.service.UserService;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private Map<Long, User> usersMap = new HashMap<>();
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping
-    public Collection<User> getAllUsers() {
-        return usersMap.values();
+    public List<User> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @PostMapping
-    public void addUser(@RequestBody User user) {
-        usersMap.put(user.getId(), user);
-    }
-
-    @PutMapping("/{id}")
-    public void updateUser(@PathVariable Long id, @RequestBody User user) {
-        usersMap.put(id, user);
+    public User addUser(@RequestBody User user) {
+        return userService.saveUser(user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
-        usersMap.remove(id);
+        userService.deleteUser(id);
     }
 }
