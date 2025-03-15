@@ -10,25 +10,25 @@ import java.util.Map;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-    private Map<Long, User> users = new HashMap<>();
+    private Map<Long, User> usersMap = new HashMap<>();
 
     @GetMapping
     public Collection<User> getAllUsers() {
-        return users.values();
+        return usersMap.values();
     }
 
     @PostMapping
     public void addUser(@RequestBody User user) {
-        users.put(user.getId(), user);
+        usersMap.put(user.getId(), user);
     }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable Long id, @RequestBody User user) {
-        users.put(id, user);
+        usersMap.put(id, user);
     }
 
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable Long id) {
-        users.remove(id);
+        usersMap.remove(id);
     }
 }
