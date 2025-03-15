@@ -14,10 +14,10 @@ public class Stats {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
-    private int id;
+    private Long id;
 
     @Column(name = "UserId")
-    private int userId;
+    private Long userId;
 
     @Column(name = "TotalWorkouts")
     private int totalWorkouts;
