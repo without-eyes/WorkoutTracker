@@ -2,27 +2,31 @@ package com.workouttracker.rest.controller;
 
 import org.springframework.web.bind.annotation.*;
 import com.workouttracker.rest.model.Stats;
+import com.workouttracker.service.StatsService;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @RequestMapping("/stats")
 public class StatsController {
-    private Map<Long, Stats> statsMap = new HashMap<>();
+    private final StatsService statsService;
 
-    @GetMapping("/{userId}")
-    public Stats getStats(@PathVariable Long userId) {
-        return statsMap.get(userId);
+    public StatsController(StatsService statsService) {
+        this.statsService = statsService;
+    }
+
+    @GetMapping
+    public List<Stats> getAllStats() {
+        return statsService.getAllStats();
     }
 
     @PostMapping
-    public void addStats(@RequestBody Stats stats) {
-        statsMap.put(stats.getUserId(), stats);
+    public Stats addStats(@RequestBody Stats stats) {
+        return statsService.saveStats(stats);
     }
 
-    @PutMapping("/{userId}")
-    public void updateStats(@PathVariable Long userId, @RequestBody Stats stats) {
-        statsMap.put(userId, stats);
+    @DeleteMapping("/{id}")
+    public void deleteStats(@PathVariable Long id) {
+        statsService.deleteStats(id);
     }
 }
