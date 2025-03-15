@@ -20,9 +20,19 @@ public class WorkoutController {
         return workoutService.getAllWorkouts();
     }
 
+    @GetMapping("/{id}")
+    public Workout getWorkoutById(@PathVariable Long id) {
+        return workoutService.getWorkoutById(id);
+    }
+
     @PostMapping
     public Workout addWorkout(@RequestBody Workout workout) {
         return workoutService.saveWorkout(workout);
+    }
+
+    @PutMapping("/{id}")
+    public Workout updateWorkout(@PathVariable Long id, @RequestBody Workout workout) {
+        return workoutService.updateWorkout(id, workout);
     }
 
     @DeleteMapping("/{id}")

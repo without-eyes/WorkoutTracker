@@ -21,6 +21,11 @@ public class StatsService {
         return statsRepository.findById(id).orElse(null);
     }
 
+    public Stats updateStats(Long id, Stats stats) {
+        stats.setId(id);
+        return statsRepository.save(stats);
+    }
+
     public Stats saveStats(Stats stats) {
         return statsRepository.save(stats);
     }

@@ -21,6 +21,11 @@ public class WorkoutService {
         return workoutRepository.findById(id).orElse(null);
     }
 
+    public Workout updateWorkout(Long id, Workout workout) {
+        workout.setId(id);
+        return workoutRepository.save(workout);
+    }
+
     public Workout saveWorkout(Workout workout) {
         return workoutRepository.save(workout);
     }

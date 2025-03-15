@@ -20,9 +20,19 @@ public class StatsController {
         return statsService.getAllStats();
     }
 
+    @GetMapping("/{id}")
+    public Stats getStatsById(@PathVariable Long id) {
+        return statsService.getStatsById(id);
+    }
+
     @PostMapping
     public Stats addStats(@RequestBody Stats stats) {
         return statsService.saveStats(stats);
+    }
+
+    @PutMapping("/{id}")
+    public Stats updateStats(@PathVariable Long id, @RequestBody Stats stats) {
+        return statsService.updateStats(id, stats);
     }
 
     @DeleteMapping("/{id}")

@@ -3,6 +3,8 @@ package com.workouttracker.service;
 import com.workouttracker.rest.model.User;
 import com.workouttracker.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
 import java.util.List;
 
 @Service
@@ -19,6 +21,11 @@ public class UserService {
 
     public User getUserById(Long id) {
         return userRepository.findById(id).orElse(null);
+    }
+
+    public User updateUser(Long id, User user) {
+        user.setId(id);
+        return userRepository.save(user);
     }
 
     public User saveUser(User user) {
