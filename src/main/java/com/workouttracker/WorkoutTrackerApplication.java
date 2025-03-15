@@ -1,4 +1,4 @@
-package com.workouttracker.rest;
+package com.workouttracker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
