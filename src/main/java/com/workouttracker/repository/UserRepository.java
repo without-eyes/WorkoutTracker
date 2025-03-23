@@ -1,7 +1,7 @@
 package com.workouttracker.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.workouttracker.rest.model.User;
+import com.workouttracker.model.User;
 import org.springframework.stereotype.Repository;
 
 @Repository

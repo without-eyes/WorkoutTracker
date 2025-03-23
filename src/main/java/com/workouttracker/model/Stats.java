@@ -1,4 +1,4 @@
-package com.workouttracker.rest.model;
+package com.workouttracker.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -7,18 +7,21 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "Users")
+@Table(name = "Stats")
 @NoArgsConstructor
 @AllArgsConstructor
-public class User {
+public class Stats {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private Long id;
 
-    @Column(name = "Username")
-    private String username;
+    @Column(name = "UserId")
+    private Long userId;
 
-    @Column(name = "PasswordHash")
-    private String password;
+    @Column(name = "TotalWorkouts")
+    private int totalWorkouts;
+
+    @Column(name = "TotalDuration")
+    private int totalDuration;
 }

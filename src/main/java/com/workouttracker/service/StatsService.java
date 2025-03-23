@@ -1,6 +1,6 @@
 package com.workouttracker.service;
 
-import com.workouttracker.rest.model.Stats;
+import com.workouttracker.model.Stats;
 import com.workouttracker.repository.StatsRepository;
 import org.springframework.stereotype.Service;
 import java.util.List;

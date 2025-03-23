@@ -1,7 +1,7 @@
-package com.workouttracker.rest.controller;
+package com.workouttracker.controller;
 
 import org.springframework.web.bind.annotation.*;
-import com.workouttracker.rest.model.Workout;
+import com.workouttracker.model.Workout;
 import com.workouttracker.service.WorkoutService;
 
 import java.util.List;

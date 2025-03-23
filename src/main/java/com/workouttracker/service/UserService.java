@@ -1,9 +1,8 @@
 package com.workouttracker.service;
 
-import com.workouttracker.rest.model.User;
+import com.workouttracker.model.User;
 import com.workouttracker.repository.UserRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.workouttracker.rest.model;
+package com.workouttracker.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
