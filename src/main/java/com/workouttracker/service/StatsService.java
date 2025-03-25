@@ -3,7 +3,6 @@ package com.workouttracker.service;
 import com.workouttracker.model.Stats;
 import com.workouttracker.repository.StatsRepository;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 @Service
 public class StatsService {
@@ -13,24 +12,22 @@ public class StatsService {
         this.statsRepository = statsRepository;
     }
 
-    public List<Stats> getAllStats() {
-        return statsRepository.findAll();
+    public Stats getStatsById(Long userID) {
+        return statsRepository.findByUserId(userID).orElse(null);
     }
 
-    public Stats getStatsById(Long id) {
-        return statsRepository.findById(id).orElse(null);
-    }
-
-    public Stats updateStats(Long id, Stats stats) {
-        stats.setId(id);
+    public Stats updateStats(Long userID, Stats stats) {
+        stats.setId(userID);
+        stats.setUserId(userID);
         return statsRepository.save(stats);
     }
 
-    public Stats saveStats(Stats stats) {
+    public Stats saveStats(Long userID, Stats stats) {
+        stats.setUserId(userID);
         return statsRepository.save(stats);
     }
 
-    public void deleteStats(Long id) {
-        statsRepository.deleteById(id);
+    public void deleteStats(Long userID) {
+        statsRepository.deleteByUserId(userID);
     }
 }

@@ -4,10 +4,8 @@ import org.springframework.web.bind.annotation.*;
 import com.workouttracker.model.Stats;
 import com.workouttracker.service.StatsService;
 
-import java.util.List;
-
 @RestController
-@RequestMapping("/stats")
+@RequestMapping("/users/{userID}/stats")
 public class StatsController {
     private final StatsService statsService;
 
@@ -16,27 +14,22 @@ public class StatsController {
     }
 
     @GetMapping
-    public List<Stats> getAllStats() {
-        return statsService.getAllStats();
-    }
-
-    @GetMapping("/{id}")
-    public Stats getStatsById(@PathVariable Long id) {
-        return statsService.getStatsById(id);
+    public Stats getStatsById(@PathVariable Long userID) {
+        return statsService.getStatsById(userID);
     }
 
     @PostMapping
-    public Stats addStats(@RequestBody Stats stats) {
-        return statsService.saveStats(stats);
+    public Stats addStats(@PathVariable Long userID, @RequestBody Stats stats) {
+        return statsService.saveStats(userID, stats);
     }
 
-    @PutMapping("/{id}")
-    public Stats updateStats(@PathVariable Long id, @RequestBody Stats stats) {
-        return statsService.updateStats(id, stats);
+    @PatchMapping
+    public Stats updateStats(@PathVariable Long userID, @RequestBody Stats stats) {
+        return statsService.updateStats(userID, stats);
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteStats(@PathVariable Long id) {
-        statsService.deleteStats(id);
+    @DeleteMapping
+    public void deleteStats(@PathVariable Long userID) {
+        statsService.deleteStats(userID);
     }
 }
