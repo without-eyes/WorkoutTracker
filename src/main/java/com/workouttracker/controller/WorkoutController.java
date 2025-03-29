@@ -7,7 +7,7 @@ import com.workouttracker.service.WorkoutService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/workouts")
+@RequestMapping("/users/{userId}/workouts")
 public class WorkoutController {
     private final WorkoutService workoutService;
 
@@ -21,18 +21,19 @@ public class WorkoutController {
     }
 
     @GetMapping("/{id}")
-    public Workout getWorkoutById(@PathVariable Long id) {
-        return workoutService.getWorkoutById(id);
+    public Workout getWorkoutByUserIdAndId(@PathVariable Long userId, @PathVariable Long id) {
+        return workoutService.getWorkoutByUserIdAndId(userId, id);
     }
 
     @PostMapping
-    public Workout addWorkout(@RequestBody Workout workout) {
+    public Workout addWorkout(@PathVariable Long userId, @RequestBody Workout workout) {
+        workout.setUserId(userId);
         return workoutService.saveWorkout(workout);
     }
 
-    @PutMapping("/{id}")
-    public Workout updateWorkout(@PathVariable Long id, @RequestBody Workout workout) {
-        return workoutService.updateWorkout(id, workout);
+    @PatchMapping("/{id}")
+    public Workout updateWorkout(@PathVariable Long userId, @PathVariable Long id, @RequestBody Workout workout) {
+        return workoutService.updateWorkout(userId, id, workout);
     }
 
     @DeleteMapping("/{id}")

@@ -17,13 +17,23 @@ public class WorkoutService {
         return workoutRepository.findAll();
     }
 
-    public Workout getWorkoutById(Long id) {
-        return workoutRepository.findById(id).orElse(null);
+    public Workout getWorkoutByUserIdAndId(Long userId, Long id) {
+        return workoutRepository.findByUserIdAndId(userId, id).orElse(null);
     }
 
-    public Workout updateWorkout(Long id, Workout workout) {
-        workout.setId(id);
-        return workoutRepository.save(workout);
+    public Workout updateWorkout(Long userId, Long id, Workout updates) {
+        return workoutRepository.findByUserIdAndId(userId, id).map(existingWorkout -> {
+            if (updates.getType() != null) {
+                existingWorkout.setType(updates.getType());
+            }
+            if (updates.getDuration() > 0) {
+                existingWorkout.setDuration(updates.getDuration());
+            }
+            if (updates.getDate() != null) {
+                existingWorkout.setDate(updates.getDate());
+            }
+            return workoutRepository.save(existingWorkout);
+        }).orElse(null);
     }
 
     public Workout saveWorkout(Workout workout) {
