@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StatsService {
-    private final StatsRepository statsRepository;
+    private StatsRepository statsRepository;
 
     public StatsService(StatsRepository statsRepository) {
         this.statsRepository = statsRepository;

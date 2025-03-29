@@ -7,7 +7,7 @@ import com.workouttracker.service.StatsService;
 @RestController
 @RequestMapping("/users/{userId}/stats")
 public class StatsController {
-    private final StatsService statsService;
+    private StatsService statsService;
 
     public StatsController(StatsService statsService) {
         this.statsService = statsService;

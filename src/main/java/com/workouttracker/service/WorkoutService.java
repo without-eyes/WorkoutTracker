@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public class WorkoutService {
-    private final WorkoutRepository workoutRepository;
+    private WorkoutRepository workoutRepository;
 
     public WorkoutService(WorkoutRepository workoutRepository) {
         this.workoutRepository = workoutRepository;
