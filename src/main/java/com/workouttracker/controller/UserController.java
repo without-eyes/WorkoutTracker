@@ -27,10 +27,14 @@ public class UserController {
 
     @PostMapping
     public User addUser(@RequestBody User user) {
-        return userService.saveUser(user);
+        if (userService.getUserByUserame(user.getUsername()) != null) {
+            return null;
+        } else {
+            return userService.saveUser(user);
+        }
     }
 
-    @PutMapping("/{id}")
+    @PatchMapping("/{id}")
     public User updateUser(@PathVariable Long id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }

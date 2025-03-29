@@ -22,9 +22,20 @@ public class UserService {
         return userRepository.findById(id).orElse(null);
     }
 
-    public User updateUser(Long id, User user) {
-        user.setId(id);
-        return userRepository.save(user);
+    public User getUserByUserame(String username) {
+        return userRepository.findByUsername(username).orElse(null);
+    }
+
+    public User updateUser(Long id, User updates) {
+        return userRepository.findById(id).map(existingUser -> {
+            if (updates.getUsername() != null) {
+                existingUser.setUsername(updates.getUsername());
+            }
+            if (updates.getPassword() != null) {
+                existingUser.setPassword(updates.getPassword());
+            }
+            return userRepository.save(existingUser);
+        }).orElse(null);
     }
 
     public User saveUser(User user) {
