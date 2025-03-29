@@ -13,21 +13,27 @@ public class StatsService {
     }
 
     public Stats getStatsById(Long userID) {
-        return statsRepository.findByUserId(userID).orElse(null);
+        return statsRepository.findById(userID).orElse(null);
     }
 
-    public Stats updateStats(Long userID, Stats stats) {
-        stats.setId(userID);
-        stats.setUserId(userID);
-        return statsRepository.save(stats);
+    public Stats updateStats(Long userId, Stats updates) {
+        return statsRepository.findById(userId).map(existingStats -> {
+            if (updates.getTotalWorkouts() > 0) {
+                existingStats.setTotalWorkouts(updates.getTotalWorkouts());
+            }
+            if (updates.getTotalDuration() > 0) {
+                existingStats.setTotalDuration(updates.getTotalDuration());
+            }
+            return statsRepository.save(existingStats);
+        }).orElse(null);
     }
 
     public Stats saveStats(Long userID, Stats stats) {
-        stats.setUserId(userID);
+        stats.setId(userID);
         return statsRepository.save(stats);
     }
 
     public void deleteStats(Long userID) {
-        statsRepository.deleteByUserId(userID);
+        statsRepository.deleteById(userID);
     }
 }

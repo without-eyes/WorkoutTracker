@@ -7,6 +7,4 @@ import java.util.Optional;
 
 @Repository
 public interface StatsRepository extends JpaRepository<Stats, Long> {
-    Optional<Stats> findByUserId(Long userID);
-    void deleteByUserId(Long userID);
 }

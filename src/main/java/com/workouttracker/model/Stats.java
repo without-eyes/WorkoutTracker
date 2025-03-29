@@ -1,23 +1,20 @@
 package com.workouttracker.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Data
 @Table(name = "Stats")
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
+@Setter
 public class Stats {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id")
     private Long id;
-
-    @Column(name = "UserId")
-    private Long userId;
 
     @Column(name = "TotalWorkouts")
     private int totalWorkouts;
