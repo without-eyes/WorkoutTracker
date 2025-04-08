@@ -16,6 +16,9 @@ public class Stats {
     @Column(name = "Id")
     private Long id;
 
+    @Column(name = "UserId")
+    private Long userID;
+
     @Column(name = "TotalWorkouts")
     private int totalWorkouts;
 

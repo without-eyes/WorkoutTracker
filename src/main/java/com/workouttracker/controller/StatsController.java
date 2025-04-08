@@ -1,5 +1,6 @@
 package com.workouttracker.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.workouttracker.model.Stats;
 import com.workouttracker.service.StatsService;
@@ -14,22 +15,33 @@ public class StatsController {
     }
 
     @GetMapping
-    public Stats getStatsById(@PathVariable Long userId) {
-        return statsService.getStatsById(userId);
+    public ResponseEntity<Stats> getStatsById(@PathVariable Long userId) {
+        Stats foundStats = statsService.getStatsById(userId);
+        if (foundStats != null) {
+            return ResponseEntity.status(200).body(foundStats);
+        } else {
+            return ResponseEntity.status(204).body(null);
+        }
     }
 
     @PostMapping
-    public Stats addStats(@PathVariable Long userId, @RequestBody Stats stats) {
-        return statsService.saveStats(userId, stats);
+    public ResponseEntity<Stats> addStats(@PathVariable Long userId, @RequestBody Stats stats) {
+        return ResponseEntity.status(201).body(statsService.saveStats(userId, stats));
     }
 
     @PatchMapping
-    public Stats updateStats(@PathVariable Long userId, @RequestBody Stats stats) {
-        return statsService.updateStats(userId, stats);
+    public ResponseEntity<Stats> updateStats(@PathVariable Long userId, @RequestBody Stats stats) {
+        Stats updatedStats = statsService.updateStats(userId, stats);
+        if (updatedStats != null) {
+            return ResponseEntity.status(200).body(updatedStats);
+        } else {
+            return ResponseEntity.status(202).body(null);
+        }
     }
 
     @DeleteMapping
-    public void deleteStats(@PathVariable Long userId) {
+    public ResponseEntity<Stats> deleteStats(@PathVariable Long userId) {
         statsService.deleteStats(userId);
+        return ResponseEntity.status(204).body(null);
     }
 }

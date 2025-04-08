@@ -29,8 +29,13 @@ public class StatsService {
     }
 
     public Stats saveStats(Long userID, Stats stats) {
-        stats.setId(userID);
-        return statsRepository.save(stats);
+        Stats existing = statsRepository.findByUserID(userID).orElse(null);
+        if (existing == null) {
+            stats.setUserID(userID);
+            return statsRepository.save(stats);
+        } else {
+            return null;
+        }
     }
 
     public void deleteStats(Long userID) {
