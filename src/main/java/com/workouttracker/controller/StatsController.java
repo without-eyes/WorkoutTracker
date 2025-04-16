@@ -35,7 +35,7 @@ public class StatsController {
         if (updatedStats != null) {
             return ResponseEntity.status(200).body(updatedStats);
         } else {
-            return ResponseEntity.status(202).body(null);
+            return ResponseEntity.status(404).body(null);
         }
     }
 

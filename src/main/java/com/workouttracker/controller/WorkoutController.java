@@ -17,8 +17,8 @@ public class WorkoutController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Workout>> getAllWorkouts() {
-        List<Workout> workoutList = workoutService.getAllWorkouts();
+    public ResponseEntity<List<Workout>> getAllWorkouts(@PathVariable Long userId) {
+        List<Workout> workoutList = workoutService.getAllWorkouts(userId);
         if (workoutList.isEmpty()) {
             return ResponseEntity.status(204).body(null);
         } else {
@@ -48,7 +48,7 @@ public class WorkoutController {
         if (updatedWorkout != null) {
             return ResponseEntity.status(200).body(updatedWorkout);
         } else {
-            return ResponseEntity.status(202).body(null);
+            return ResponseEntity.status(404).body(null);
         }
     }
 

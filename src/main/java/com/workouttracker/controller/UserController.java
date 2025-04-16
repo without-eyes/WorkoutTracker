@@ -51,7 +51,7 @@ public class UserController {
         if (updatedUser != null) {
             return ResponseEntity.status(200).body(updatedUser);
         } else {
-            return ResponseEntity.status(202).body(null);
+            return ResponseEntity.status(404).body(null);
         }
     }
 
