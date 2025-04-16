@@ -13,8 +13,8 @@ public class WorkoutService {
         this.workoutRepository = workoutRepository;
     }
 
-    public List<Workout> getAllWorkouts() {
-        return workoutRepository.findAll();
+    public List<Workout> getAllWorkouts(Long userId) {
+        return workoutRepository.findAllByUserId(userId);
     }
 
     public Workout getWorkoutByUserIdAndId(Long userId, Long id) {
